@@ -105,6 +105,13 @@ def turnos(request):
             datos = form.cleaned_data
             categoria = SolicitudTurno.clasificar_comentarios(datos['comentarios'])
             solicitud = SolicitudTurno.objects.create(**datos, categoria=categoria)
+            if not settings.GARAGE27_ENVIO_EMAIL:
+                messages.warning(
+                    request,
+                    'Recibimos tu solicitud. En esta versión no se envía '
+                    'correo de confirmación. No hace falta que vuelvas a enviarla.'
+                )
+                return redirect('turnos')
             servicio = dict(form.fields['servicio'].choices).get(datos['servicio'])
 
             ############################
@@ -371,6 +378,13 @@ def registro(request):
     form = RegistroForm(request.POST if request.method == 'POST' else None)
 
     if request.method == 'POST' and form.is_valid():
+        if not settings.GARAGE27_ENVIO_EMAIL:
+            form.add_error(
+                None,
+                'El registro por correo se prueba en el entorno local. '
+                'Si ya tenés una cuenta validada, podés iniciar sesión.'
+            )
+            return render(request, 'mi_app/registro.html', {'form': form})
         datos = form.cleaned_data
         email = datos['email']
         codigo = f'{randbelow(1_000_000):06d}'

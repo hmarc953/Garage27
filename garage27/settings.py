@@ -151,6 +151,8 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 EMAIL_HOST = "c2280296.ferozo.com"
 EMAIL_PORT = 465
+EMAIL_TIMEOUT = 5
+GARAGE27_ENVIO_EMAIL = os.environ.get("GARAGE27_ENVIO_EMAIL", "True").lower() == "true"
 
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
