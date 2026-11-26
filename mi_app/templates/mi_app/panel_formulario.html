@@ -1,0 +1,30 @@
+{% extends 'mi_app/panel.html' %}
+
+{% block title %}Garage 27 | {{ titulo }}{% endblock %}
+
+{% block content %}
+<section class="account-section panel-formulario-section">
+    <div class="appointment-form-container">
+        <h1 class="account-title">{{ titulo }}</h1>
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="panel-formulario-campos">
+                {% for campo in form %}
+                    <div class="form-group{% if campo.name == 'comentarios' %} panel-formulario-ancho-completo{% endif %}">
+                        <div class="form-label">{{ campo.label_tag }}</div>
+                        {{ campo }}
+                        {{ campo.errors }}
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="appointment-button">Guardar solicitud</button>
+        </form>
+
+        <p class="auth-switch">
+            <a href="{% url 'panel_solicitudes' %}">Volver al panel</a>
+        </p>
+    </div>
+</section>
+{% endblock %}

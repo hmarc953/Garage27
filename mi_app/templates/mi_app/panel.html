@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Garage 27 | Panel de solicitudes{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'mi_app/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'mi_app/responsive.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="panel-solicitudes">
+    <div class="panel-encabezado">
+        <h1>Panel de solicitudes</h1>
+        <a class="navbar-button" href="{% url 'panel_solicitud_nueva' %}">Nueva solicitud</a>
+    </div>
+
+    {% for message in messages %}
+        <p class="panel-aviso" role="status">{{ message }}</p>
+    {% endfor %}
+
+    <h2>Resumen estadístico</h2>
+    <dl class="panel-resumen">
+        <div>
+            <dt>Total de solicitudes</dt>
+            <dd>{{ total }}</dd>
+        </div>
+        {% for categoria, cantidad in resumen %}
+            <div>
+                <dt>{{ categoria }}</dt>
+                <dd>{{ cantidad }}</dd>
+            </div>
+        {% endfor %}
+    </dl>
+
+    <h2 id="solicitudes-titulo">Solicitudes recibidas</h2>
+    <div class="panel-tabla" role="region" aria-labelledby="solicitudes-titulo" tabindex="0">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Correo electrónico</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Vehículo</th>
+                    <th scope="col">Patente</th>
+                    <th scope="col">Servicio</th>
+                    <th scope="col">Fecha preferida</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Comentarios</th>
+                    <th scope="col" class="panel-columna-acciones">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for solicitud in solicitudes %}
+                    <tr>
+                        <td>{{ solicitud.nombre }}</td>
+                        <td>{{ solicitud.email }}</td>
+                        <td>{{ solicitud.telefono }}</td>
+                        <td>{{ solicitud.vehiculo }}</td>
+                        <td>{{ solicitud.patente|default:"No informada" }}</td>
+                        <td>{{ solicitud.servicio_nombre }}</td>
+                        <td>{{ solicitud.fecha|date:"d/m/Y" }} · {{ solicitud.horario }}</td>
+                        <td>{{ solicitud.get_categoria_display }}</td>
+                        <td class="panel-comentarios">
+                            {{ solicitud.comentarios|default:"Sin comentarios"|linebreaksbr }}
+                        </td>
+                        <td class="panel-columna-acciones">
+                            <div class="panel-acciones">
+                                <a class="panel-accion-icono"
+                                   href="{% url 'panel_solicitud_editar' solicitud.pk %}"
+                                   title="Editar" aria-label="Editar">
+                                    <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                                </a>
+                                <button type="button" class="panel-accion-icono panel-eliminar-abrir"
+                                        data-url="{% url 'panel_solicitud_eliminar' solicitud.pk %}"
+                                        title="Eliminar" aria-label="Eliminar">
+                                    <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="9">Todavía no hay solicitudes registradas.</td>
+                        <td class="panel-columna-acciones"></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<dialog id="panel-eliminar-modal" class="panel-eliminar-modal"
+        aria-labelledby="panel-eliminar-titulo">
+    <form id="panel-eliminar-form" method="post">
+        {% csrf_token %}
+
+        <button type="button" class="panel-modal-cerrar" data-cerrar-modal aria-label="Cerrar">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+
+        <i class="fa-solid fa-triangle-exclamation panel-modal-alerta" aria-hidden="true"></i>
+        <h2 id="panel-eliminar-titulo">¿Está seguro de eliminar esta consulta?</h2>
+
+        <div class="panel-modal-acciones">
+            <button type="button" class="panel-modal-cancelar" data-cerrar-modal autofocus>
+                Cancelar
+            </button>
+            <button type="submit" class="panel-modal-confirmar">Eliminar</button>
+        </div>
+    </form>
+</dialog>
+{% endblock %}

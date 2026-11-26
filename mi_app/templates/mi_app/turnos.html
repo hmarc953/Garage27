@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Garage 27 | Solicitar turno{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'mi_app/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'mi_app/responsive.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="appointment-section">
+
+    <div class="appointment-intro">
+        <p class="section-label">SOLICITAR TURNO</p>
+
+        <h1>
+            TU AUTO MERECE<br>
+            <span>EL MEJOR CUIDADO.</span>
+        </h1>
+
+        <p class="appointment-description">
+            Completá tus datos y contanos qué necesita tu vehículo.
+            Nos pondremos en contacto para confirmar el turno.
+        </p>
+
+        <div class="appointment-steps">
+            <div>
+                <span>01</span>
+                <p>Elegí el servicio</p>
+            </div>
+
+            <div>
+                <span>02</span>
+                <p>Contanos sobre tu vehículo</p>
+            </div>
+
+            <div>
+                <span>03</span>
+                <p>Elegí una fecha</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="appointment-form-container">
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+
+            <div class="form-row">
+                <div class="form-group">
+                    <span class="form-label">{{ form.nombre.label|capfirst }}</span>
+                    {{ form.nombre }}
+                    {{ form.nombre.errors }}
+                </div>
+
+                <div class="form-group">
+                    <span class="form-label">{{ form.email.label|capfirst }}</span>
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <div class="form-label">{{ form.telefono.label_tag }}</div>
+                    {{ form.telefono }}
+                    {{ form.telefono.errors }}
+                </div>
+                <div class="form-group">
+                    <div class="form-label">{{ form.patente.label_tag }}</div>
+                    {{ form.patente }}
+                    {{ form.patente.errors }}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <div class="form-label">{{ form.marca.label_tag }}</div>
+                    {{ form.marca }}
+                    {{ form.marca.errors }}
+                    <datalist id="marcas-vehiculo"></datalist>
+                </div>
+                <div class="form-group">
+                    <div class="form-label">{{ form.modelo.label_tag }}</div>
+                    {{ form.modelo }}
+                    {{ form.modelo.errors }}
+                    <datalist id="modelos-vehiculo"></datalist>
+                    {{ catalogo_vehiculos|json_script:"catalogo-vehiculos" }}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <div class="form-label">{{ form.fecha.label_tag }}</div>
+                    {{ form.fecha }}
+                    {{ form.fecha.errors }}
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label">{{ form.horario.label_tag }}</div>
+                    {{ form.horario }}
+                    {{ form.horario.errors }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-label">{{ form.servicio.label_tag }}</div>
+                {{ form.servicio }}
+                {{ form.servicio.errors }}
+            </div>
+
+            <div class="form-group">
+                <span class="form-label">{{ form.comentarios.label|capfirst }}</span>
+                {{ form.comentarios }}
+                {{ form.comentarios.errors }}
+            </div>
+
+            <button type="submit" class="appointment-button">
+                SOLICITAR TURNO
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="success-modal" id="success-modal">
+            <div class="success-modal-content">
+                <button type="button" class="success-modal-close" id="success-modal-close">
+                    &times;
+                </button>
+
+                <span class="success-modal-icon">✓</span>
+
+                <p class="section-label">GARAGE 27</p>
+
+                <h2>¡SOLICITUD RECIBIDA!</h2>
+
+                <p>
+                    Te enviamos un correo de confirmación.
+                    Nos pondremos en contacto con vos para confirmar el turno.
+                </p>
+
+                <button type="button" class="success-modal-button" id="success-modal-button">
+                    CONTINUAR
+                </button>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'mi_app/scripts.js' %}"></script>
+{% endblock %}

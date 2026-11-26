@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Garage 27 | Registro{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'mi_app/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'mi_app/responsive.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="account-section">
+    <div class="appointment-form-container">
+        {% if cuenta_ya_validada %}
+            <span class="success-modal-icon">✓</span>
+        {% endif %}
+        <h1 class="account-title">
+            {% if validacion_pendiente %}Validación de cuenta{% else %}Crear cuenta{% endif %}
+        </h1>
+
+        {% if cuenta_ya_validada %}
+            <p class="cuenta-validada-mensaje">Tu cuenta ya fue validada. Ya podés iniciar sesión.</p>
+        {% else %}
+
+            {% for message in messages %}
+                <p role="status">{{ message }}</p>
+            {% endfor %}
+
+            {% if not validacion_pendiente or mostrar_codigo %}
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    {% for campo in form %}
+                        <div class="form-group">
+                            <div class="form-label">{{ campo.label_tag }}</div>
+                            {{ campo }}
+                            {{ campo.errors }}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="appointment-button">
+                        {% if validacion_pendiente %}Validar cuenta{% else %}Registrarme{% endif %}
+                    </button>
+                </form>
+            {% endif %}
+        {% endif %}
+        {% if not validacion_pendiente %}
+            <p class="auth-switch">
+                ¿Ya tenés cuenta? <a href="{% url 'login' %}">Iniciar sesión</a>
+            </p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

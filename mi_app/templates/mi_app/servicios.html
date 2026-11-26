@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Garage 27 | Servicios{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'mi_app/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'mi_app/responsive.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="page-header">
+        <p class="section-label">SERVICIOS</p>
+
+        <h1>
+            CUIDAMOS TU AUTO<br>
+            <span>DE PRINCIPIO A FIN.</span>
+        </h1>
+
+        <p class="page-header-description">
+            Conocé todos los servicios de Garage 27 para cuidar,
+            proteger y personalizar tu vehículo.
+        </p>
+
+        <div class="page-header-line"></div>
+    </section>
+
+    <section class="services-list">
+        <article class="service-detail" id="detailing">
+            <div class="service-detail-number">01</div>
+
+            <div class="service-detail-content">
+                <p class="section-label">INTERIOR & EXTERIOR</p>
+                <h2>Detailing integral</h2>
+                <p>
+                    Limpieza profunda y acondicionamiento del vehículo,
+                    trabajando cada superficie para recuperar su aspecto
+                    y mantenerla protegida.
+                </p>
+            </div>
+
+            <div class="service-detail-image service-image-1"></div>
+        </article>
+
+        <article class="service-detail service-detail-reverse" id="pulido">
+            <div class="service-detail-number">02</div>
+
+            <div class="service-detail-content">
+                <p class="section-label">CORRECCIÓN DE PINTURA</p>
+                <h2>Pulido profesional</h2>
+                <p>
+                    Tratamiento de la pintura para reducir imperfecciones,
+                    recuperar profundidad y devolverle brillo a la carrocería.
+                </p>
+            </div>
+
+            <div class="service-detail-image service-image-2"></div>
+        </article>
+
+        <article class="service-detail" id="ceramico">
+            <div class="service-detail-number">03</div>
+
+            <div class="service-detail-content">
+                <p class="section-label">PROTECCIÓN</p>
+                <h2>Tratamiento cerámico</h2>
+                <p>
+                    Protección de larga duración que ayuda a conservar
+                    el acabado de la pintura y facilita su mantenimiento.
+                </p>
+            </div>
+
+            <div class="service-detail-image service-image-3"></div>
+        </article>
+
+        <article class="service-detail service-detail-reverse">
+            <div class="service-detail-number">04</div>
+
+            <div class="service-detail-content">
+                <p class="section-label">CUIDADO ESPECIALIZADO</p>
+                <h2>Limpieza de motor</h2>
+                <p>
+                    Limpieza detallada del compartimiento del motor,
+                    cuidando sus componentes y recuperando una presentación
+                    limpia y prolija.
+                </p>
+            </div>
+
+            <div class="service-detail-image service-image-4"></div>
+        </article>
+
+        <article class="service-detail">
+            <div class="service-detail-number">05</div>
+
+            <div class="service-detail-content">
+                <p class="section-label">ESTILO</p>
+                <h2>Personalización estética</h2>
+                <p>
+                    Detalles y terminaciones pensados para darle a cada
+                    vehículo una apariencia única y personalizada.
+                </p>
+            </div>
+
+            <div class="service-detail-image service-image-5"></div>
+        </article>
+    </section>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'mi_app/scripts.js' %}"></script>
+{% endblock %}

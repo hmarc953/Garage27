@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Garage 27 | Nuestros trabajos{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'mi_app/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'mi_app/responsive.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="works-header">
+        <p class="section-label">GARAGE 27</p>
+        <h1>NUESTROS TRABAJOS</h1>
+        <p>
+            Cada vehículo es único. Conocé algunos de los resultados
+            logrados en nuestro taller.
+        </p>
+    </section>
+
+    <section class="works-gallery">
+        <article class="work-item work-large">
+            <div class="work-image work-image-1"></div>
+
+            <div class="work-info">
+                <button type="button" class="work-info-close">&times;</button>
+
+                <p>DETAILING INTEGRAL</p>
+                <h2>BMW Serie 3</h2>
+
+                <div class="work-description">
+                    Se realizó un detailing integral de interior y exterior,
+                    con limpieza profunda y acondicionamiento para recuperar
+                    la terminación general del vehículo.
+                </div>
+            </div>
+        </article>
+
+        <article class="work-item">
+            <div class="work-image work-image-2"></div>
+
+            <div class="work-info">
+                <button type="button" class="work-info-close">&times;</button>
+
+                <p>CORRECCIÓN DE PINTURA</p>
+                <h2>Audi A5</h2>
+
+                <div class="work-description">
+                    Se realizó una corrección de pintura para reducir marcas
+                    e imperfecciones y recuperar el brillo y la terminación
+                    de la carrocería.
+                </div>
+            </div>
+        </article>
+
+        <article class="work-item">
+            <div class="work-image work-image-4"></div>
+
+            <div class="work-info">
+                <button type="button" class="work-info-close">&times;</button>
+
+                <p>DETAILING EXTERIOR</p>
+                <h2>Porsche 911</h2>
+
+                <div class="work-description">
+                    Se realizó un detailing exterior con limpieza profunda
+                    y acondicionamiento de carrocería, llantas y detalles
+                    para recuperar el acabado del vehículo.
+                </div>
+            </div>
+        </article>
+
+        <article class="work-item work-wide">
+            <div class="work-image work-image-3"></div>
+
+            <div class="work-info">
+                <button type="button" class="work-info-close">&times;</button>
+
+                <p>TRATAMIENTO CERÁMICO</p>
+                <h2>Mercedes-Benz Clase C</h2>
+
+                <div class="work-description">
+                    Se aplicó un tratamiento cerámico para proteger la pintura,
+                    potenciar el brillo y conseguir una terminación exterior
+                    más uniforme y duradera.
+                </div>
+            </div>
+        </article>
+
+        <article class="work-item work-wide">
+            <div class="work-image work-image-5"></div>
+
+            <div class="work-info">
+                <button type="button" class="work-info-close">&times;</button>
+
+                <p>PERSONALIZACIÓN ESTÉTICA</p>
+                <h2>BMW M4</h2>
+
+                <div class="work-description">
+                    Se realizó un trabajo de personalización estética para
+                    realzar el carácter deportivo del vehículo y conseguir
+                    una terminación más distintiva.
+                </div>
+            </div>
+        </article>
+    </section>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'mi_app/scripts.js' %}"></script>
+{% endblock %}

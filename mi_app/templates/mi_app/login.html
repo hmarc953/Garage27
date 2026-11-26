@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Garage 27 | Iniciar sesión{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'mi_app/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'mi_app/responsive.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="account-section">
+    <div class="appointment-form-container">
+        <h1 class="account-title">Iniciar sesión</h1>
+
+        {% for message in messages %}
+            <p role="status">{{ message }}</p>
+        {% endfor %}
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% for campo in form %}
+                <div class="form-group">
+                    <div class="form-label">{{ campo.label_tag }}</div>
+                    {{ campo }}
+                    {{ campo.errors }}
+                </div>
+            {% endfor %}
+            {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+            <button type="submit" class="appointment-button">Ingresar</button>
+        </form>
+        <p class="auth-switch">
+            ¿No tenés cuenta? <a href="{% url 'registro' %}">Registrate acá</a>
+        </p>
+    </div>
+</section>
+{% endblock %}

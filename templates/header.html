@@ -1,0 +1,41 @@
+<header class="main-header">
+    <nav class="navbar">
+        <a href="{% url 'index' %}" class="navbar-logo">
+            GARAGE <span>27</span>
+        </a>
+
+        <button type="button" class="navbar-toggle" id="navbar-toggle"
+                aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="navbar-links">
+            <a href="{% url 'index' %}">Inicio</a>
+            <a href="{% url 'servicios' %}">Servicios</a>
+            <a href="{% url 'trabajos' %}">Nuestros trabajos</a>
+            <a href="{% url 'turnos' %}" class="navbar-button">Solicitar turno</a>
+        </div>
+
+        <div class="navbar-account">
+            {% if user.is_authenticated %}
+                <details class="navbar-account-menu">
+                    <summary class="navbar-account-trigger">
+                        <span class="navbar-account-name">
+                            <span class="navbar-mobile-full-name">{{ user.get_full_name|default:user.email }}</span>
+                            <span class="navbar-mobile-first-name">{{ user.first_name|default:user.email }}</span>
+                        </span>
+                    </summary>
+                    <form class="navbar-account-dropdown" method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <a class="navbar-panel-link" href="{% url 'panel_solicitudes' %}">Panel de solicitudes</a>
+                        <button type="submit">Cerrar sesión</button>
+                    </form>
+                </details>
+            {% else %}
+                <a href="{% url 'login' %}" class="navbar-button navbar-login-button">Iniciar sesión</a>
+            {% endif %}
+        </div>
+    </nav>
+</header>

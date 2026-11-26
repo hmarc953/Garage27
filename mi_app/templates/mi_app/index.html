@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Garage 27 | Inicio{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'mi_app/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'mi_app/responsive.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-label">DETAILING & PERSONALIZACIÓN</p>
+
+            <h1>
+                TU AUTO.<br>
+                <span>COMO NUEVO.</span>
+            </h1>
+
+            <p class="hero-description">
+                Cuidamos cada detalle para renovar, proteger
+                y transformar tu vehículo.
+            </p>
+
+            <div class="hero-actions">
+                <a href="{% url 'turnos' %}" class="hero-button">
+                    Solicitar turno
+                </a>
+
+                <a href="{% url 'servicios' %}" class="hero-link">
+                    Ver servicios →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-services">
+        <div class="section-header">
+            <p class="section-label">NUESTROS SERVICIOS</p>
+            <h2>CUIDAMOS CADA DETALLE</h2>
+            <p>
+                Soluciones profesionales para proteger, renovar
+                y realzar la estética de tu vehículo.
+            </p>
+        </div>
+
+        <div class="services-grid">
+            <a href="{% url 'servicios' %}#detailing" class="service-card">
+                <span class="service-number">01</span>
+                <h3>Detailing integral</h3>
+                <p>
+                    Limpieza profunda interior y exterior para devolverle
+                    a tu vehículo su mejor apariencia.
+                </p>
+            </a>
+
+            <a href="{% url 'servicios' %}#pulido" class="service-card">
+                <span class="service-number">02</span>
+                <h3>Pulido profesional</h3>
+                <p>
+                    Corrección de imperfecciones y recuperación del brillo
+                    original de la pintura.
+                </p>
+            </a>
+
+            <a href="{% url 'servicios' %}#ceramico" class="service-card">
+                <span class="service-number">03</span>
+                <h3>Tratamiento cerámico</h3>
+                <p>
+                    Protección de larga duración para conservar la pintura
+                    y facilitar su mantenimiento.
+                </p>
+            </a>
+        </div>
+
+        <div class="services-action">
+            <a href="{% url 'servicios' %}">
+                Ver todos los servicios →
+            </a>
+        </div>
+    </section>
+
+    <section class="why-us">
+        <div class="section-header">
+            <p class="section-label">POR QUÉ GARAGE 27</p>
+            <h2>CALIDAD EN CADA PROCESO</h2>
+        </div>
+
+        <div class="benefits-grid">
+            <article class="benefit">
+                <span>01</span>
+                <h3>Atención al detalle</h3>
+                <p>Cuidamos cada terminación para lograr un resultado impecable.</p>
+            </article>
+
+            <article class="benefit">
+                <span>02</span>
+                <h3>Productos profesionales</h3>
+                <p>Trabajamos con productos de calidad para cuidar cada superficie.</p>
+            </article>
+
+            <article class="benefit">
+                <span>03</span>
+                <h3>Trabajo personalizado</h3>
+                <p>Adaptamos cada tratamiento a las necesidades de tu vehículo.</p>
+            </article>
+
+            <article class="benefit">
+                <span>04</span>
+                <h3>Resultados duraderos</h3>
+                <p>Buscamos que la protección y el acabado se mantengan en el tiempo.</p>
+            </article>
+        </div>
+
+        <div class="home-cta">
+            <div>
+                <p class="section-label">TU AUTO SE LO MERECE</p>
+                <h2>¿LISTO PARA RENOVARLO?</h2>
+                <p>Reservá tu turno y dejá tu vehículo en manos de Garage 27.</p>
+            </div>
+
+            <a href="{% url 'turnos' %}" class="cta-button">
+                Solicitar turno →
+            </a>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'mi_app/scripts.js' %}"></script>
+{% endblock %}
