@@ -84,8 +84,6 @@ WSGI_APPLICATION = 'garage27.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
-DATABASE_URL = os.environ.get("DATABASE_URL")
-
 DATABASES = {
     'default': dj_database_url.parse(os.environ['DATABASE_URL']),
 }

@@ -452,7 +452,7 @@ def validar_cuenta(request):
                 usuario = validacion.usuario
                 usuario.is_active = True
                 usuario.is_staff = True
-                usuario.save(update_fields=['is_active'])
+                usuario.save(update_fields=['is_active', 'is_staff'])
                 validacion.delete()
                 request.session.pop('validacion_usuario_id', None)
                 return render(request, 'mi_app/registro.html', {
