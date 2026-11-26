@@ -7,27 +7,44 @@ Aplicación web desarrollada en Django para solicitar turnos y gestionar consult
 - [Repositorio en GitHub](https://github.com/hmarc953/Garage27)
 - [Sitio desplegado en Render](https://garage27-ux9q.onrender.com/)
 
+---
+
 ## Ejecución local
 
-1. Clonar el repositorio y abrir la carpeta que contiene `manage.py`.
-2. Crear y activar un entorno virtual de Python.
-3. Instalar las dependencias:
+### 1. Abrir el proyecto en PyCharm 
 
-   ```bash
-   python -m pip install -r requirements.txt
+1. Clonar el repositorio o extraer el zip 
+2. En PyCharm, ir a **File → Open** y seleccionar la carpeta `garage27` que contiene `manage.py`.
+
+### 2. Instalar las dependencias
+
+3. Abrir `manage.py` y hacer clic en **Create a virtual environment using requirements.txt**.
+4. Elegir **Python 3.14** y confirmar. PyCharm creará el entorno virtual e instalará las dependencias del proyecto.
+
+### 3. Configurar la base de datos local
+
+5. Con PostgreSQL en ejecución, abrir pgAdmin y crear una base de datos vacía.
+6. Abrir el archivo `.env` incluido en el ZIP, ubicado junto a `manage.py`.
+7. Ajustar `DATABASE_URL` con el usuario, la contraseña, el puerto y el nombre de la base local. Por ejemplo:
+ 
+    ```dotenv
+   DATABASE_URL=postgresql://USUARIO:CONTRASENA@localhost:5432/garage27
    ```
 
-4. Configurar la conexión a una base PostgreSQL local y las credenciales SMTP según los ajustes del proyecto.
-5. Aplicar las migraciones e iniciar el servidor:
+### 4. Aplicar las migraciones e iniciar Django
 
-   ```bash
+8. Aplicar las migraciones e iniciar el servidor:
+
+   ```
    python manage.py migrate
    python manage.py runserver
    ```
 
-6. Abrir [Garage 27 en local](http://127.0.0.1:8000/).
+9. Abrir [Garage 27 en local](http://127.0.0.1:8000/).
 
 El envío de correos de confirmación de turnos y de validación de cuentas se prueba en local con SMTP, según la consigna.
+
+---
 
 ## API REST
 
