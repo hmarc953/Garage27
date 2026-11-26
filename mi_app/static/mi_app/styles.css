@@ -11,7 +11,7 @@
             rgba(17, 17, 17, 0.15) 70%,
             rgba(17, 17, 17, 0.05) 100%
         ),
-        url("/static/images/hero.png") 50% 65% / cover no-repeat;
+        url("/static/images/hero.webp") 50% 65% / cover no-repeat;
 }
 
 .hero-content {
@@ -330,23 +330,23 @@
 }
 
 .service-image-1 {
-    background-image: url("/static/images/service-1.png");
+    background-image: url("/static/images/service-1.webp");
 }
 
 .service-image-2 {
-    background-image: url("/static/images/service-2.png");
+    background-image: url("/static/images/service-2.webp");
 }
 
 .service-image-3 {
-    background-image: url("/static/images/service-3.png");
+    background-image: url("/static/images/service-3.webp");
 }
 
 .service-image-4 {
-    background-image: url("/static/images/service-4.png");
+    background-image: url("/static/images/service-4.webp");
 }
 
 .service-image-5 {
-    background-image: url("/static/images/service-5.png");
+    background-image: url("/static/images/service-5.webp");
 }
 
 .works-header {
@@ -508,23 +508,23 @@
 }
 
 .work-image-1 {
-    background-image: url("/static/images/bmw-s3.png");
+    background-image: url("/static/images/bmw-s3.webp");
 }
 
 .work-image-2 {
-    background-image: url("/static/images/audi.png");
+    background-image: url("/static/images/audi.webp");
 }
 
 .work-image-3 {
-    background-image: url("/static/images/merceded-benz.png");
+    background-image: url("/static/images/merceded-benz.webp");
 }
 
 .work-image-4 {
-    background-image: url("/static/images/porshe.png");
+    background-image: url("/static/images/porshe.webp");
 }
 
 .work-image-5 {
-    background-image: url("/static/images/bmw-m4.png");
+    background-image: url("/static/images/bmw-m4.webp");
 }
 
 /* =========================
