@@ -20,6 +20,8 @@ from rest_framework.authentication import SessionAuthentication
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.permissions import BasePermission
 from rest_framework.renderers import JSONRenderer
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from urllib.request import urlopen
 
@@ -87,6 +89,10 @@ def obtener_catalogo_vehiculos():
 
     cache.set(clave_cache, {}, timeout=5 * 60)
     return {}
+
+@api_view(['GET'])
+def catalogo_vehiculos_api(request):
+    return Response(obtener_catalogo_vehiculos())
 
 def turnos(request):
     if request.method == 'POST':
@@ -345,7 +351,6 @@ def turnos(request):
 
     return render(request, 'mi_app/turnos.html', {
         'form': form,
-        'catalogo_vehiculos': obtener_catalogo_vehiculos(),
     })
 
 def registro(request):

@@ -22,4 +22,5 @@ urlpatterns = [
     path('panel/<int:pk>/eliminar/', views.eliminar_solicitud_panel, name='panel_solicitud_eliminar'),
     path('api/consultas/', views.ConsultasAPI.as_view(), name='api_consultas'),
     path('api/consultas/<int:pk>/', views.ConsultaDetalleAPI.as_view(), name='api_consulta_detalle'),
+    path('api/vehiculos/catalogo/', views.catalogo_vehiculos_api, name='catalogo_vehiculos'),
 ]

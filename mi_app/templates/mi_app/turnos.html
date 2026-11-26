@@ -86,8 +86,7 @@
                     <div class="form-label">{{ form.modelo.label_tag }}</div>
                     {{ form.modelo }}
                     {{ form.modelo.errors }}
-                    <datalist id="modelos-vehiculo"></datalist>
-                    {{ catalogo_vehiculos|json_script:"catalogo-vehiculos" }}
+                    <datalist id="modelos-vehiculo" data-catalogo-url="{% url 'catalogo_vehiculos' %}"></datalist>
                 </div>
             </div>
 

@@ -60,10 +60,24 @@ const turnoMarca = document.querySelector("#id_marca");
 const turnoModelo = document.querySelector("#id_modelo");
 const turnoListaMarcas = document.querySelector("#marcas-vehiculo");
 const turnoListaModelos = document.querySelector("#modelos-vehiculo");
-const turnoCatalogo = document.querySelector("#catalogo-vehiculos");
 
-if (turnoMarca && turnoModelo && turnoListaMarcas && turnoListaModelos && turnoCatalogo) {
-    const catalogo = Object.entries(JSON.parse(turnoCatalogo.textContent));
+async function iniciarSugerenciasVehiculo() {
+    const catalogoUrl = turnoListaModelos?.dataset.catalogoUrl;
+    if (!turnoMarca || !turnoModelo || !turnoListaMarcas || !catalogoUrl) {
+        return;
+    }
+
+    let catalogo;
+    try {
+        const respuesta = await fetch(catalogoUrl);
+        if (!respuesta.ok) {
+            return;
+        }
+        catalogo = Object.entries(await respuesta.json());
+    } catch {
+        return;
+    }
+
     const marcas = catalogo.map(([marca]) => marca);
     const modelosPorMarca = new Map(catalogo.map(([marca, modelos]) => [marca.toLowerCase(), modelos]));
 
@@ -97,3 +111,5 @@ if (turnoMarca && turnoModelo && turnoListaMarcas && turnoListaModelos && turnoC
     turnoModelo.addEventListener("input", actualizarModelos);
     actualizarMarca();
 }
+
+iniciarSugerenciasVehiculo();
