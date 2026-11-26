@@ -19,7 +19,13 @@
         </h1>
 
         {% if cuenta_ya_validada %}
-            <p class="cuenta-validada-mensaje">Tu cuenta ya fue validada. Ya podés iniciar sesión.</p>
+            <p class="cuenta-validada-mensaje">
+                {% if validacion_exitosa %}
+                    Tu cuenta se validó correctamente. Ya podés iniciar sesión.
+                {% else %}
+                    Tu cuenta ya fue validada. Ya podés iniciar sesión.
+                {% endif %}
+            </p>
         {% else %}
 
             {% for message in messages %}

@@ -7,6 +7,7 @@ from django.views.decorators.http import require_POST
 from hashlib import sha256
 from secrets import randbelow
 from smtplib import SMTPException
+import logging
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import user_passes_test
@@ -35,6 +36,8 @@ from .models import CorreoAutorizado, SolicitudTurno, ValidacionCuenta
 
 from datetime import timedelta
 from django.utils import timezone
+
+logger = logging.getLogger(__name__)
 
 
 def index(request):
@@ -334,15 +337,26 @@ def turnos(request):
             )
 
             ############################
-            # Mandar mail al usuario
+            # Mandar mails
             ############################
-            aviso_taller.send()
-            email.send(fail_silently=False)
+            try:
+                confirmacion_enviada = email.send(fail_silently=False) == 1
+            except (SMTPException, OSError):
+                confirmacion_enviada = False
 
-            messages.success(
-                request,
-                'Tu solicitud de turno fue recibida correctamente.'
-            )
+            try:
+                aviso_taller.send(fail_silently=False)
+            except (SMTPException, OSError):
+                logger.exception('No se pudo enviar el aviso al taller.')
+
+            if confirmacion_enviada:
+                messages.success(request, 'Tu solicitud de turno fue recibida correctamente.')
+            else:
+                messages.warning(
+                    request,
+                    'Recibimos tu solicitud, pero no pudimos enviarte el correo de '
+                    'confirmación. No hace falta que vuelvas a enviarla.'
+                )
 
             return redirect('turnos')
 
@@ -441,8 +455,11 @@ def validar_cuenta(request):
                 usuario.save(update_fields=['is_active'])
                 validacion.delete()
                 request.session.pop('validacion_usuario_id', None)
-                messages.success(request, 'Tu cuenta fue validada correctamente.')
-                return redirect('index')
+                return render(request, 'mi_app/registro.html', {
+                    'validacion_pendiente': True,
+                    'cuenta_ya_validada': True,
+                    'validacion_exitosa': True,
+                })
 
     return render(request, 'mi_app/registro.html', {
         'form': form,

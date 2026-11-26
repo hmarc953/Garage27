@@ -138,7 +138,7 @@ STORAGES = {
 }
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'panel'
+LOGIN_REDIRECT_URL = 'panel_solicitudes'
 LOGOUT_REDIRECT_URL = 'index'
 
 

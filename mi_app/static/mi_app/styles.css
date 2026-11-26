@@ -1028,3 +1028,12 @@
 .panel-formulario-ancho-completo {
     grid-column: 1 / -1;
 }
+
+.success-modal-warning .success-modal-icon,
+.success-modal-warning .section-label {
+    color: var(--color-yellow);
+}
+
+.success-modal-warning .success-modal-icon {
+    border-color: var(--color-yellow);
+}

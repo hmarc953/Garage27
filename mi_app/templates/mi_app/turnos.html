@@ -128,22 +128,30 @@
 
 {% if messages %}
     {% for message in messages %}
-        <div class="success-modal" id="success-modal">
+        <div class="success-modal{% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %} success-modal-warning{% endif %}" id="success-modal">
             <div class="success-modal-content">
                 <button type="button" class="success-modal-close" id="success-modal-close">
                     &times;
                 </button>
 
-                <span class="success-modal-icon">✓</span>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                    <span class="success-modal-icon" aria-hidden="true">!</span>
+                {% else %}
+                    <span class="success-modal-icon" aria-hidden="true">✓</span>
+                {% endif %}
 
                 <p class="section-label">GARAGE 27</p>
 
                 <h2>¡SOLICITUD RECIBIDA!</h2>
 
-                <p>
-                    Te enviamos un correo de confirmación.
-                    Nos pondremos en contacto con vos para confirmar el turno.
-                </p>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                    <p>{{ message }}</p>
+                {% else %}
+                    <p>
+                        Te enviamos un correo de confirmación.
+                        Nos pondremos en contacto con vos para confirmar el turno.
+                    </p>
+                {% endif %}
 
                 <button type="button" class="success-modal-button" id="success-modal-button">
                     CONTINUAR
